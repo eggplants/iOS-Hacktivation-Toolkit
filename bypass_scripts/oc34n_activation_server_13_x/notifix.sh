@@ -1,14 +1,15 @@
 #!/bin/bash
 
 ##########################
-#ROOT PRIVILEGES
-###########################
-while true; do
-  if [[ $EUID -ne 0 ]]; then
-    echo -e "$RED You don't have root privileges, execute the script as root.$NC"
-    exit 1
-  fi
+# ROOT PRIVILEGES
+##########################
 
+if [[ $EUID -ne 0 ]]; then
+  echo -e "$RED You don't have root privileges, execute the script as root.$NC"
+  exit 1
+fi
+
+while true; do
   clear
 
   rm ~/.ssh/known_hosts >/dev/null 2>&1
