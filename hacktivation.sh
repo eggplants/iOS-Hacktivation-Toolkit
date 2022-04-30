@@ -44,8 +44,8 @@ clear
 function continueOrExit() {
   # Continue or Exit
   echo
-  read -r -p "Complete! Back To Menu? [ Y / n ] : " CHECK
-  if [[ "$CHECK" = "Y" || "$CHECK" = "y" || "$CHECK" = "Yes" || "$CHECK" = "yes" || "$CHECK" = "YES" ]]; then
+  read -r -p "Complete! Back To Menu? [ Y / n ] : " check
+  if [[ "$check" =~ ^(Y|y|Yes|yes|YES)$ ]]; then
     :
   else
     echo -e "${RED} Program Exit ...${NC}"
