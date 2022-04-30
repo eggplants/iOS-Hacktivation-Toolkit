@@ -12,7 +12,7 @@ Looking for developers! This is a work in progress. If you think you can add to 
 
 ### Supported Devices
 
-```
+```text
 iPhone X
 iPhone 8
 iPhone 7
@@ -38,12 +38,9 @@ iPod Touch 1st Generation
 
 ### Features
 
-
-```
 - Firmware Restore / Upgrade
 - Jailbreak (checkra1n)
 - Activation Lock Bypass for all checkm8 vulnerable devices
-```
 
 ### Install
 
@@ -51,16 +48,18 @@ UBUNTU LIVE USB USERS WILL NEED TO ENABLE SOFTWARE REPOS IN SOFTWARE & UPDATES
 
 ![img](https://i.imgur.com/05scg8J.png)
 
-
-```
-sudo apt install git
-git clone https://github.com/Hacktivation/iOS-Hacktivation-Toolkit.git
-cd iOS-Hacktivation-Toolkit/
-chmod +x hacktivation.sh
+```sh
+wget https://github.com/Hacktivation/iOS-Hacktivation-Toolkit/archive/refs/heads/master.tar.gz
+tar xvf master.tar.gz && rm master.tar.gz
+cd iOS-Hacktivation-Toolkit-master
 sudo ./hacktivation.sh
 ```
 
-Tested on Debian 10 and Ubuntu 20.04
+Tested on:
+
+- Debian 10
+- Ubuntu 20.04
+- macOS 12.2.1 
 
 Looking for developers! This is a work in progress. If you think you can add to this project please get in touch!
 
