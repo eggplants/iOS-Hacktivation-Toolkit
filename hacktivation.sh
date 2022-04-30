@@ -35,7 +35,6 @@ if [[ $EUID -ne 0 ]]; then
   echo -e "${RED} You don't have root privileges, execute the script as root.${NC}"
   exit 1
 fi
-clear
 
 ###########################
 # ROOT PRIVILEGES         #
@@ -70,7 +69,7 @@ function continueOrExit() {
 ###########################
 
 while true; do
-
+  clear
   echo -n -e "${GREEN}
  **********************************************************************
  ********************** iOS Hacktivation Toolkit **********************
