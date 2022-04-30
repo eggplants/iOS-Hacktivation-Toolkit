@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -57,7 +57,7 @@ function continueOrExit() {
 # MENU                    #
 ###########################
 
-while :; do
+while true; do
 
   echo -n -e "${GREEN}
  **********************************************************************
@@ -102,111 +102,111 @@ while :; do
 
   case "$ch" in
 
-    "0")
-      echo -e "$RED Program Exit ...$NC"
-      break
-      ;;
+  "0")
+    echo -e "$RED Program Exit ...$NC"
+    break
+    ;;
 
-      ###########################
-      # INSTALL
-      ###########################
+    ###########################
+    # INSTALL
+    ###########################
 
-    "1") # Install
+  "1") # Install
 
-      echo "deb https://assets.checkra.in/debian /" | sudo tee -a /etc/apt/sources.list
-      apt-key adv --fetch-keys https://assets.checkra.in/debian/archive.key
-      apt update
-      apt install -y python libtool-bin libcurl4-openssl-dev libplist-dev libzip-dev openssl libssl-dev libcurl4-openssl-dev libimobiledevice-dev libusb-1.0-0-dev libreadline-dev build-essential git make autoconf automake libxml2-dev libtool pkg-config checkra1n sshpass checkinstall
-      git clone 'https://github.com/libimobiledevice/libirecovery'
-      git clone 'https://github.com/libimobiledevice/libideviceactivation.git'
-      git clone 'https://github.com/libimobiledevice/idevicerestore'
-      git clone 'https://github.com/libimobiledevice/usbmuxd'
-      git clone 'https://github.com/libimobiledevice/libimobiledevice'
-      git clone 'https://github.com/libimobiledevice/libusbmuxd'
-      git clone 'https://github.com/libimobiledevice/libplist'
-      git clone 'https://github.com/rcg4u/iphonessh.git'
-      cd ./libplist && ./autogen.sh --without-cython && sudo make install && cd ..
-      cd ./libusbmuxd && ./autogen.sh && sudo make install && cd ..
-      cd ./libimobiledevice && ./autogen.sh --without-cython && sudo make install && cd ..
-      cd ./usbmuxd && ./autogen.sh && sudo make install && cd ..
-      cd ./libirecovery && ./autogen.sh && sudo make install && cd ..
-      cd ./idevicerestore && ./autogen.sh && sudo make install && cd ..
-      cd ./libideviceactivation/ && ./autogen.sh && sudo make && sudo make install && cd ..
-      sudo ldconfig
-      continueOrExit
-      ;;
+    echo "deb https://assets.checkra.in/debian /" | sudo tee -a /etc/apt/sources.list
+    apt-key adv --fetch-keys https://assets.checkra.in/debian/archive.key
+    apt update
+    apt install -y python libtool-bin libcurl4-openssl-dev libplist-dev libzip-dev openssl libssl-dev libcurl4-openssl-dev libimobiledevice-dev libusb-1.0-0-dev libreadline-dev build-essential git make autoconf automake libxml2-dev libtool pkg-config checkra1n sshpass checkinstall
+    git clone 'https://github.com/libimobiledevice/libirecovery'
+    git clone 'https://github.com/libimobiledevice/libideviceactivation.git'
+    git clone 'https://github.com/libimobiledevice/idevicerestore'
+    git clone 'https://github.com/libimobiledevice/usbmuxd'
+    git clone 'https://github.com/libimobiledevice/libimobiledevice'
+    git clone 'https://github.com/libimobiledevice/libusbmuxd'
+    git clone 'https://github.com/libimobiledevice/libplist'
+    git clone 'https://github.com/rcg4u/iphonessh.git'
+    cd ./libplist && ./autogen.sh --without-cython && sudo make install && cd ..
+    cd ./libusbmuxd && ./autogen.sh && sudo make install && cd ..
+    cd ./libimobiledevice && ./autogen.sh --without-cython && sudo make install && cd ..
+    cd ./usbmuxd && ./autogen.sh && sudo make install && cd ..
+    cd ./libirecovery && ./autogen.sh && sudo make install && cd ..
+    cd ./idevicerestore && ./autogen.sh && sudo make install && cd ..
+    cd ./libideviceactivation/ && ./autogen.sh && sudo make && sudo make install && cd ..
+    sudo ldconfig
+    continueOrExit
+    ;;
 
     ###########################
     # RESTORE                 #
     ###########################
 
-    "2") # RESTORE
+  "2") # RESTORE
 
-      idevicerestore -e -l
-      continueOrExit
-      ;;
+    idevicerestore -e -l
+    continueOrExit
+    ;;
 
     ###########################
     # CHECKRA1N               #
     ###########################
 
-    "3") # CHECKRA1N
+  "3") # CHECKRA1N
 
-      checkra1n
-      continueOrExit
-      ;;
+    checkra1n
+    continueOrExit
+    ;;
 
     ###########################
     # OC34N PAID              #
     ###########################
 
-    "4") # OC34N PAID
+  "4") # OC34N PAID
 
-      bypass_scripts/oc34n_activation_server_13_x/./run.sh
-      continueOrExit
-      ;;
+    bypass_scripts/oc34n_activation_server_13_x/./run.sh
+    continueOrExit
+    ;;
 
     ##############################
     # IOS 13 > MOBILEACTIVATIOND #
     ##############################
 
-    "5") # IOS 13 > MOBILEACTIVATIOND
+  "5") # IOS 13 > MOBILEACTIVATIOND
 
-      bypass_scripts/mobileactivationd_13_x/./run.sh
-      continueOrExit
-      ;;
+    bypass_scripts/mobileactivationd_13_x/./run.sh
+    continueOrExit
+    ;;
 
     ##################################
     # IOS 12.4.7 > MOBILEACTIVATIOND #
     ##################################
 
-    "6") # IOS 12.4.7 > MOBILEACTIVATIOND
+  "6") # IOS 12.4.7 > MOBILEACTIVATIOND
 
-      bypass_scripts/mobileactivationd_12_4_7/./run.sh
-      continueOrExit
-      ;;
+    bypass_scripts/mobileactivationd_12_4_7/./run.sh
+    continueOrExit
+    ;;
 
     ###########################
     # SSH SHELL               #
     ###########################
 
-    "7") # SSH SHELL
+  "7") # SSH SHELL
 
-      echo ""
-      rm ~/.ssh/known_hosts >/dev/null 2>&1
-      pgrep -f 'tcprelay.py' | xargs kill >/dev/null 2>&1
-      python iphonessh/python-client/tcprelay.py -t 44:2222 >/dev/null 2>&1 &
-      sleep 2
-      sshpass -p 'alpine' ssh -o StrictHostKeyChecking=no root@localhost -p 2222 mount -o rw,union,update /
-      sshpass -p 'alpine' ssh -o StrictHostKeyChecking=no root@localhost -p 2222
-      pgrep -f 'tcprelay.py' | xargs kill >/dev/null 2>&1
-      continueOrExit
-      ;;
+    echo ""
+    rm ~/.ssh/known_hosts >/dev/null 2>&1
+    pgrep -f 'tcprelay.py' | xargs kill >/dev/null 2>&1
+    python iphonessh/python-client/tcprelay.py -t 44:2222 >/dev/null 2>&1 &
+    sleep 2
+    sshpass -p 'alpine' ssh -o StrictHostKeyChecking=no root@localhost -p 2222 mount -o rw,union,update /
+    sshpass -p 'alpine' ssh -o StrictHostKeyChecking=no root@localhost -p 2222
+    pgrep -f 'tcprelay.py' | xargs kill >/dev/null 2>&1
+    continueOrExit
+    ;;
 
-    *)  # UNKNOWN SELECTIOM
+  *) # UNKNOWN SELECTIOM
 
-      echo "Option not found."
-      ;;
+    echo "Option not found."
+    ;;
 
   esac
 done

@@ -1,0 +1,40 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: debug-statements
+      - id: destroyed-symlinks
+      # - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+        exclude: tests/test_changes/
+        files: \.(py|sh|rst|yml|yaml)$
+      # - id: name-tests-test
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        files: \.(py|sh|rst|yml|yaml)$
+      # - id: requirements-txt-fixer
+  - repo: https://github.com/crate-ci/typos
+    rev: 'typos-dict-v0.8.2'
+    hooks:
+      - id: typos
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.1.0
+    hooks:
+      - id: codespell
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.8.0
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/pecigonzalo/pre-commit-shfmt
+    rev: 23bcc6bbfd38358ca99fb1787af2f8202b9dd46a
+    hooks:
+      - id: shell-fmt
+        args:
+          - -i=2
